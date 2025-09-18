@@ -1,4 +1,5 @@
-import 'package:coffee_shop/utils/custom_colors.dart';
+import 'package:coffee_shop/components/custom_button.dart';
+import 'package:coffee_shop/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class OnboardScreen extends StatelessWidget {
@@ -45,40 +46,21 @@ class OnboardScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
 
-                    CustomButton(text: 'Get Started'),
+                    CustomButton(
+                      text: 'Get Started',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  final String text;
-  const CustomButton({super.key, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 60,
-      decoration: BoxDecoration(
-        color: CustomColors.primaryColor,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
       ),
     );
   }
