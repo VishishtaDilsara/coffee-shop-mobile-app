@@ -1,4 +1,5 @@
 import 'package:coffee_shop/components/custom_button.dart';
+import 'package:coffee_shop/screens/order_screen.dart';
 import 'package:coffee_shop/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +65,15 @@ class _ItemViewScreenState extends State<ItemViewScreen> {
                 ),
                 SizedBox(
                   width: size.width * 0.7,
-                  child: CustomButton(text: 'Buy Now', onTap: () {}),
+                  child: CustomButton(
+                    text: 'Buy Now',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => OrderScreen()),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
@@ -96,7 +105,7 @@ class _ItemViewScreenState extends State<ItemViewScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Caffe Mocha',
+                      'Caffe Mochad',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
