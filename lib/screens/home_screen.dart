@@ -10,6 +10,27 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 12, right: 12, top: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              CustomBottomNavigationBaritem(
+                icon: Icons.home_rounded,
+                isSelected: true,
+              ),
+              CustomBottomNavigationBaritem(
+                icon: Icons.favorite_outline_rounded,
+              ),
+              CustomBottomNavigationBaritem(icon: Icons.shopping_bag_outlined),
+              CustomBottomNavigationBaritem(
+                icon: Icons.notifications_none_rounded,
+              ),
+            ],
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -231,6 +252,39 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Container(
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withAlpha(50),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(30),
+                                            topRight: Radius.circular(20),
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(
+                                              Icons.star_rounded,
+                                              color: Colors.amber,
+                                            ),
+                                            Text(
+                                              productIndex.rating.toString(),
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Text(
                                 productIndex.name,
@@ -278,6 +332,41 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class CustomBottomNavigationBaritem extends StatelessWidget {
+  final bool isSelected;
+  final IconData icon;
+  const CustomBottomNavigationBaritem({
+    super.key,
+    required this.icon,
+    this.isSelected = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          icon,
+          color: isSelected ? CustomColors.primaryColor : Colors.grey.shade400,
+          size: 30,
+        ),
+        SizedBox(height: 6),
+        isSelected
+            ? Container(
+                width: 18,
+                height: 6,
+                decoration: BoxDecoration(
+                  color: CustomColors.primaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              )
+            : SizedBox(height: 6),
+      ],
     );
   }
 }
